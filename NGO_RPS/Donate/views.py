@@ -21,17 +21,16 @@ def ngo(request):
     return render(request,'Donate/ngo.html') 
 
 def donor_signup(request):
-    if request.method == "POST":
-        form = NewDonorForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, "Registration successful." )
-            return redirect("main:homepage")
-        messages.error(request, "Unsuccessful registration. Invalid information.")		
+	if request.method == "POST":
+		form = NewDonorForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Registration successful." )
+			return redirect("Donate:firstpage")
+		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewDonorForm()
-
-    return render(request, "Donate/donor_signup.html")
+	return render (request=request, template_name="Donate/donor_signup.html", context={"register_form":form})
 
 def donor_login(request):
     return render(request, "Donate/donor_login.html")
