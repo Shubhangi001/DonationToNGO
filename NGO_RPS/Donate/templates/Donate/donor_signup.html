@@ -7,10 +7,13 @@
     </head>
     <body>
         <p>Welcome New Donor!</p> 
-        <form>
+        <form method="POST">
+            {% csrf_token %}
             Name of the Donor: <input type = "text" placeholder= "Enter Name here" name= "first"><br>
             Mobile number: <input type = "text" placeholder = "Enter mobile no here" name = "mobno"> <br>
             Date of Birth: <input type = "text" placeholder = "Enter DOB here" name = "dob"><br>
+            <button type="submit">Register</button>
         </form>
+        <p class="text-center">If you already have an account, <a href="donor_login">login</a> instead.</p>
     </body>
 </html> 
