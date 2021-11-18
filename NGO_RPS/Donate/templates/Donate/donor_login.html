@@ -6,10 +6,14 @@
         <title>Donor Log In</title>
     </head>
     <body>
+
         <p>Welcome Donor!</p>
-        <form>
-            Name of Donor: <input type = "text" placeholder= "Enter Name here" name= "name"><br>
-            Password: <input type = "password" placeholder = "Password" name = "password">
+        {% include 'Donate/messages.html' %}
+        <form method="POST">
+            {% csrf_token %}
+            <h4>Username: <input type="text" placeholder="Username" name="username"></h4>
+            <h4>Password: <input type="password" placeholder="Password" name="password"></h4>
+            <input type="submit" placeholder="Login">
         </form>
     </body>
 </html> 

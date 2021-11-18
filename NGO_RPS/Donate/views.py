@@ -6,11 +6,9 @@ from . import forms, models
 from django.contrib import auth
 from django.contrib.auth.models import Group
 from .forms import NewDonorForm
-from django.contrib.auth import login
+from django.contrib.auth import authenticate,login
 from django.contrib import messages
 
-
-# Create your views here.
 def firstpage(request):
     return render(request,'Donate/firstpage.html')  
 
@@ -27,14 +25,32 @@ def donor_signup(request):
 	form = NewDonorForm()
 	return render (request=request, template_name="Donate/donor_signup.html", context={"NewDonorForm":NewDonorForm})
 
+# def donor_login(request):
+    
+
 def donor_login(request):
-    return render(request, "Donate/donor_login.html")
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect("Donate:userprofile")
+			# Redirect to a success page.
+		else:
+			messages.error(request, "Invalid information.")
+			return redirect("Donate:donor_login")
+	return render(request, "Donate/donor_login.html")
 
 def ngo_signup(request):
     return render(request, "Donate/ngo_signup.html")
 
 def ngo_login(request):
     return render(request, "Donate/ngo_login.html")
+def userprofile(request):
+    return render(request, "Donate/userprofile.html")
+
+
 
 
 # def adminsignup_view(request):

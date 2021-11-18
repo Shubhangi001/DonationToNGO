@@ -3,6 +3,7 @@ from . import views
 app_name='Donate'
 urlpatterns = [
         path('', views.firstpage,name='firstpage'),
+        path('userprofile', views.userprofile,name='userprofile'),
         path('donor_signup', views.donor_signup,name='donor_signup'),
         path('donor_login', views.donor_login,name='donor_login'),
         path('ngo_signup', views.ngo_signup,name='ngo_signup'),
