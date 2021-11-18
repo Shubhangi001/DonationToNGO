@@ -35,7 +35,7 @@ def donor_login(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			return render("Donate/userprofile.html")
+			return redirect("Donate:userprofile")
 			# Redirect to a success page.
 		else:
 			messages.error(request, "Invalid information.")
