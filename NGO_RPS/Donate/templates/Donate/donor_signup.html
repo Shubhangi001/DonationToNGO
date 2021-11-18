@@ -2,20 +2,22 @@
 
 {% load static %}        
 <html lang="en">
-    <head>
+        <head>
         <title>New Donor Registration</title>
     </head>
     <body>
+        
         {% block content %}
         <p>Welcome New Donor!</p> 
+        <div class="form">
         <form method="POST">
             {% csrf_token %}
-            <!-- Name of the Donor: <input type = "text" placeholder= "Enter Name here" name= "first"><br>
-            Email: <input type = "text" placeholder = "Enter email" name = "email"> <br>
-            Create password: <input type = "password" placeholder = "Enter password" name = "password"><br> -->
-            {{ register_form }}
+
+              {{ NewDonorForm.as_p }}
             <button type="submit">Register</button>
-        </form>
+              <!-- <button>Register</button> -->
+            </form>
+        </div>  
         <p class="text-center">If you already have an account, <a href="donor_login">login</a> instead.</p>
         {% endblock %}
     </body>
