@@ -12,13 +12,7 @@ from django.contrib import messages
 
 # Create your views here.
 def firstpage(request):
-    return render(request,'Donate/firstpage.html') 
-
-def donor(request):
-    return render(request,'Donate/donor.html') 
-
-def ngo(request):
-    return render(request,'Donate/ngo.html') 
+    return render(request,'Donate/firstpage.html')  
 
 def donor_signup(request):
 	if request.method == "POST":
@@ -29,8 +23,9 @@ def donor_signup(request):
 			messages.success(request, "Registration successful." )
 			return redirect("Donate:firstpage")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
+		return redirect("Donate:firstpage")
 	form = NewDonorForm()
-	return render (request=request, template_name="Donate/donor_signup.html", context={"register_form":form})
+	return render (request=request, template_name="Donate/donor_signup.html", context={"NewDonorForm":NewDonorForm})
 
 def donor_login(request):
     return render(request, "Donate/donor_login.html")
