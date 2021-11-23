@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 # from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from . import forms, models
+from . import models
 # from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import auth
 from django.contrib.auth.models import Group
@@ -74,6 +74,7 @@ def afterlogin(request):
 
 
 def userprofile(request):
+	
     return render(request, "Donate/userprofile.html")
 def ngo_afterlogin(request):
     return render(request, "Donate/ngo_afterlogin.html")
