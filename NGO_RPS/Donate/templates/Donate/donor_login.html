@@ -39,16 +39,14 @@
                 <div class="form">
                 <form method="POST">
                   {% csrf_token %}
+                  {% for field in form %}
                 <div class="mb-3 formsize">
-                    <label for="exampleFormControlTextarea1" class="form-label" >Username</label>
-                    <input class="form-control" id="exampleFormControlTextarea1"placeholder="" >
-                  </div>
+                    <label for="exampleFormControlTextarea1" class="form-label" >{{ field.label_tag }}</label>
+                  
+                    <div> {{ field }} </div>
+                    {% endfor %}
                   <div class="mb-3 formsize">
-                    <label for="exampleFormControlInput1" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="">
-                  </div>
-                  <div class="d-grid gap-2 formsize" style="margin-top:40px ;">
-                    <button href="userprofile" class="btn btn-primary" type="button">Login</button>
+                    <button class="btn btn-primary" type="submit">Login</button>
                   </div>
                   <h5 class="formsize mt-3">Not registered? <a href="donor_signup" class="primary-link">Sign up</a></h5> 
                 </form>
