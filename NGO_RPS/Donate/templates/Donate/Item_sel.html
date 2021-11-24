@@ -25,8 +25,10 @@
     }
   </style>
   <body>
+    <nav>        {% include 'Donate/navbar.html' %}
+    </nav>
     <div class="container-fluid" style="margin-top:50px ;">
-        <div w3-include-html="navbar.html"></div>
+        <!-- <div w3-include-html="navbar.html"></div> -->
     </div>
     <div class="container-fluid backimg" >
        <h1 style="margin-left: 250px;">Item Selection</h1>
@@ -53,12 +55,15 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1"placeholder="" ></textarea>
               </div>
               <div class="d-grid gap-2 formsize itemform" style="margin-top:20px ; margin-bottom: 20px;">
-                <button href="#" class="btn btn-primary" type="button">Submit</button>
+                <button class="btn btn-primary" style="color: white;" type="submit"><a href="donorprofile">Submit</a></button>
               </div>
             </div>
     </div>
     </div>
-    <div w3-include-html="Footer.html"></div>
+    <footer>
+      {% include 'Donate/Footer.html' %}
+  </footer>
+    <!-- <div w3-include-html="Footer.html"></div> -->
 
 
     <script> w3.includeHTML();</script>

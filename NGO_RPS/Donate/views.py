@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from NGO_RPS import Donate
+# from NGO_RPS import Donate
 
 
 def firstpage(request):
@@ -79,9 +79,9 @@ def afterlogin(request):
 # 	return render(request, "Donate/donor_login.html")
 
 
-def userprofile(request):
+def donorprofile(request):
 	
-    return render(request, "Donate/userprofile.html")
+    return render(request, "Donate/donorprofile.html")
 def ngo_afterlogin(request):
     return render(request, "Donate/ngo_afterlogin.html")
 
