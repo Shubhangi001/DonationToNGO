@@ -60,7 +60,7 @@ def afterlogin(request):
 		return render(request,'Donate/NGOprofile.html')
 	else:
 		return render(request,'Donate/ngolist.html',context={'ngos':ngos})
-@login_required
+@login_required(login_url='ngo_login')
 def ngolist(request):
 	ngos=models.Ngolist.objects.all()
 	return render(request,'Donate/ngolist.html',context={'ngos':ngos})
@@ -86,9 +86,9 @@ def ngolist(request):
 # 	return render(request, "Donate/donor_login.html")
 
 @login_required(login_url='donor_login')
-def donorprofile(request,username):
-	usr = User.objects.get(username=username)
-	return render(request, "Donate/donorprofile.html",context={'usr':usr})
+def donorprofile(request):
+	# usr = User.objects.get(username=username)
+	return render(request, "Donate/donorprofile.html")
 
 @login_required(login_url='ngo_login')
 @user_passes_test(is_ngo)
