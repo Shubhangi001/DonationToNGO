@@ -11,9 +11,9 @@ urlpatterns = [
         path('ngo_signup', views.ngo_signup,name='ngo_signup'),
         # path('donor_login', views.donor_login,name='donor_login'),
         path('logout', LogoutView.as_view(template_name='Donate/firstpage.html')),
-        path('donor_login', LoginView.as_view(),name='donor_login'),
+        path('donor_login', LoginView.as_view(template_name='Donate/donor_login.html')),
         path('afterlogin', views.afterlogin),
-        path('ngo_login', LoginView.as_view(),name='ngo_login'),
+        path('ngo_login', LoginView.as_view(template_name='Donate/ngo_login.html')),
         path('ngo_afterlogin', views.ngo_afterlogin,name='ngo_afterlogin'),
 
 ]

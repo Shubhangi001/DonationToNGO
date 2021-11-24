@@ -14,7 +14,7 @@
   <body style="height: 87%;">
     
     <div class="container-fluid mt-5 pt-3" style="min-height: 100%;  ">
-      <div w3-include-html="navbar.html"></div>
+      <div> {% include 'Donate/navbar.html' %} </div>
         <div class="main-body" >
         
         
@@ -153,7 +153,8 @@
             </div>
            
         </div>
-        <div w3-include-html="Footer.html"></div>
+        <div>    {% include 'Donate/Footer.html' %}
+        </div>
         <script> w3.includeHTML();</script>
     <!-- Optional JavaScript; choose one of the two! -->
 

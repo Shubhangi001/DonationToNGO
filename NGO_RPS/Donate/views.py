@@ -52,7 +52,7 @@ def donor_signup(request):
 
 def afterlogin(request):
 	if is_ngo(request.user):
-		return render(request,'Donate/ngo_afterlogin.html')
+		return render(request,'Donate/NGOprofile.html')
 	else:
 		return render(request,'Donate/userprofile.html')
 
