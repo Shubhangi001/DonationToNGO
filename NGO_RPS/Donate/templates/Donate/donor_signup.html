@@ -41,7 +41,14 @@
                 {% block content %}
                 <form method="POST">
                   {% csrf_token %}
-                  {% for field in form %}
+                  {% for field in form1 %}
+
+                    <div class="mb-3 formsize">
+                      <label class="form-label" >{{ field.label_tag }}</label>
+                      <div > {{ field }} </div>
+                    </div>
+                    {% endfor %}
+                  {% for field in form2 %}
 
                     <div class="mb-3 formsize">
                       <label class="form-label" >{{ field.label_tag }}</label>

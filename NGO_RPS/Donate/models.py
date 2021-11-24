@@ -12,6 +12,16 @@ class Ngoextra(models.Model):
     def __str__(self):
         return self.user
 
+class Donorextra(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    mobno = models.CharField(max_length=10)
+    telephone = models.CharField(max_length=10)
+    address = models.CharField(max_length=100)
+    mail_id = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user
+
 # class Ngoextra(models.Model):
 #     user=models.OneToOneField(User,on_delete=models.CASCADE)
 #     website = models.CharField(max_length=50)

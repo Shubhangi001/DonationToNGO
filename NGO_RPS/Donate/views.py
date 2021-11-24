@@ -5,7 +5,7 @@ from . import models, forms
 # from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import auth
 from django.contrib.auth.models import Group,User
-from .forms import NewDonorForm, NewNGOForm, NGOExtraForm
+from .forms import NewDonorForm, NewNGOForm, NGOExtraForm, DonorExtraForm
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required,user_passes_test
@@ -37,21 +37,25 @@ def ngo_signup(request):
 			f2=form2.save(commit=False)
 			f2.user=user
 			user2=f2.save()
-			
 			ngo_group = Group.objects.get_or_create(name='NGO')
 			ngo_group[0].user_set.add(user)
 		return HttpResponseRedirect('ngo_login')
 	return render(request,"Donate/ngo_signup.html",context=mydict)
 
 def donor_signup(request):
-	form = NewDonorForm()
-	mydict={'form':form}
+	form1 = NewDonorForm()
+	form2 = DonorExtraForm()
+	mydict={'form1':form1,'form2':form2}
 	if(request.method == "POST"):
-		form = NewDonorForm(request.POST)
-		if form.is_valid():
-			user = form.save()
+		form1 = NewDonorForm(request.POST)
+		form2 = DonorExtraForm(request.POST)
+		if form1.is_valid() and form2.is_valid():
+			user = form1.save()
 			user.set_password(user.password)
 			user.save()
+			f2=form2.save(commit=False)
+			f2.user=user
+			user2=f2.save()
 			donor_group = Group.objects.get_or_create(name='DONOR')
 			donor_group[0].user_set.add(user)
 		return HttpResponseRedirect('donor_login')
