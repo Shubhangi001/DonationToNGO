@@ -9,13 +9,17 @@ class NewNGOForm(forms.ModelForm):
         model = User
         fields=['first_name','last_name','username','password']
 
+class NGOExtraForm(forms.ModelForm):
+    class Meta:
+        model=models.Ngoextra
+        fields=['mobno', 'place', 'website', 'mail_id']
 
 class NewDonorForm(forms.ModelForm):
 	# email = forms.EmailField(required=True)
-
 	class Meta:
 		model = User
 		fields=['first_name','last_name','username','password']
+
 
 
 	# def save(self, commit=True):

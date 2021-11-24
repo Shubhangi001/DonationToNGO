@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 # from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from . import models
+from . import models, forms
 # from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import auth
 from django.contrib.auth.models import Group,User
-from .forms import NewDonorForm,NewNGOForm
+from .forms import NewDonorForm, NewNGOForm, NGOExtraForm
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required,user_passes_test
@@ -24,18 +24,24 @@ def home(request):
 
 
 def ngo_signup(request):
-	form2=NewNGOForm()
-	dict2={'form2':form2}
+	form1=NewNGOForm()
+	form2=NGOExtraForm()
+	mydict={'form1':form1,'form2':form2}
 	if(request.method == "POST"):
-		form2 = NewNGOForm(request.POST)
-		if form2.is_valid():
-			user = form2.save()
+		form1 = NewNGOForm(request.POST)
+		form2 = NGOExtraForm(request.POST)
+		if form1.is_valid() and form2.is_valid():
+			user = form1.save()
 			user.set_password(user.password)
 			user.save()
+			f2=form2.save(commit=False)
+			f2.user=user
+			user2=f2.save()
+			
 			ngo_group = Group.objects.get_or_create(name='NGO')
 			ngo_group[0].user_set.add(user)
 		return HttpResponseRedirect('ngo_login')
-	return render(request,"Donate/ngo_signup.html",context=dict2)
+	return render(request,"Donate/ngo_signup.html",context=mydict)
 
 def donor_signup(request):
 	form = NewDonorForm()
@@ -52,25 +58,18 @@ def donor_signup(request):
 	return render(request,"Donate/donor_signup.html",context=mydict)
 
 
-
-
 def afterlogin(request):
-	ngos=models.Ngolist.objects.all()
+	ngos=models.Ngoextra.objects.all()
 	if is_ngo(request.user):
 		return render(request,'Donate/NGOprofile.html')
 	else:
 		return render(request,'Donate/ngolist.html',context={'ngos':ngos})
+
 @login_required(login_url='ngo_login')
 def ngolist(request):
-	ngos=models.Ngolist.objects.all()
+	ngos=models.Ngoextra.objects.all()
 	return render(request,'Donate/ngolist.html',context={'ngos':ngos})
 	
-
-
-
-
-# def donor_login(request):
-    
 
 # def donor_login(request):
 # 	if request.method == "POST":

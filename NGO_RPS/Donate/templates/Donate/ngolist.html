@@ -13,8 +13,7 @@
     
 
     <body>
-        <nav>        {% include 'Donate/navbar.html' %}
-        </nav>
+        <nav>        {% include 'Donate/navbar.html' %} </nav>
     <form action="Item_sel">
 
         <br>
@@ -23,12 +22,13 @@
         <br>
         {% for i in ngos %}
     
-        {{ i.ngoname }}<br>
+        {{ i.user }}<br>
         {{ i.mobno }}<br>
         {{ i.place }}<br>
+        {{ i.website }}<br>
+        {{ i.mail_id }}<br>
         {% endfor %}
-        <button type="submit" >Donate
-        </button>
+        <button type="submit" >Donate</button>
     </form>
     <footer>
         {% include 'Donate/Footer.html' %}
