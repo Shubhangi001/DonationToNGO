@@ -4,11 +4,11 @@ from django.http import HttpResponseRedirect
 from . import models
 # from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import auth
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group,User
 from .forms import NewDonorForm,NewNGOForm
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,user_passes_test
 
 # from NGO_RPS import Donate
 
@@ -19,6 +19,9 @@ def firstpage(request):
 	return render(request,'Donate/firstpage.html')
 def is_ngo(user):
     return user.groups.filter(name='NGO').exists()
+def home(request):
+	return render(request,'Donate/firstpage.html')
+
 
 def ngo_signup(request):
 	form2=NewNGOForm()
@@ -57,9 +60,13 @@ def afterlogin(request):
 		return render(request,'Donate/NGOprofile.html')
 	else:
 		return render(request,'Donate/ngolist.html',context={'ngos':ngos})
+@login_required
+def ngolist(request):
+	ngos=models.Ngolist.objects.all()
+	return render(request,'Donate/ngolist.html',context={'ngos':ngos})
+	
 
-# def ngolist(request):
-# 	ngos=models.Ngolist.objects.all()
+
 
 
 # def donor_login(request):
@@ -78,13 +85,17 @@ def afterlogin(request):
 # 			return redirect("Donate:donor_login")
 # 	return render(request, "Donate/donor_login.html")
 
+@login_required(login_url='donor_login')
+def donorprofile(request,username):
+	usr = User.objects.get(username=username)
+	return render(request, "Donate/donorprofile.html",context={'usr':usr})
 
-def donorprofile(request):
-	
-    return render(request, "Donate/donorprofile.html")
+@login_required(login_url='ngo_login')
+@user_passes_test(is_ngo)
 def ngo_afterlogin(request):
     return render(request, "Donate/ngo_afterlogin.html")
 
+@login_required(login_url='donor_login')
 def Item_sel(request):
 	return render(request,"Donate/Item_sel.html")
 
