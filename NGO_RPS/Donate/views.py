@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from NGO_RPS import Donate
+
 
 def firstpage(request):
 	if request.user.is_authenticated:
@@ -49,12 +51,16 @@ def donor_signup(request):
 
 
 
-
 def afterlogin(request):
+	ngos=models.Ngolist.objects.all()
 	if is_ngo(request.user):
 		return render(request,'Donate/NGOprofile.html')
 	else:
-		return render(request,'Donate/userprofile.html')
+		return render(request,'Donate/ngolist.html',context={'ngos':ngos})
+
+# def ngolist(request):
+# 	ngos=models.Ngolist.objects.all()
+
 
 # def donor_login(request):
     
@@ -78,6 +84,9 @@ def userprofile(request):
     return render(request, "Donate/userprofile.html")
 def ngo_afterlogin(request):
     return render(request, "Donate/ngo_afterlogin.html")
+
+def Item_sel(request):
+	return render(request,"Donate/Item_sel.html")
 
 
 
