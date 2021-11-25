@@ -16,8 +16,16 @@
         background-size: cover;
         background-position-x: center;
         background-position-y: center;
-        height: 800px;
+        background-attachment: fixed;
+        height:100%;
     }
+    .cardn{
+        width: 70rem;
+        min-height:20rem;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.8;
+      }
     </style>
     </head>
     
@@ -27,19 +35,52 @@
           <div> {% include 'Donate/navbar.html' %}</div> 
         <h1 class="pt-5 pb-2 text-center ">List of NGOs available</h1>
     <form action="Item_sel">
-        <div class="container-fluid  ">
-            <div class="card p-2 " style="width: 90rem;min-height:20rem;margin-left: auto;margin-right: auto;">
-            <table class="table table-bordered" style="width: 100%;height: 100%; margin-left: auto;margin-right: auto;">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">NGO name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Contact no. </th>
-                    <th scope="col">Website</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
+        <div class="container-fluid pb-5 ">
+          <div class="card p-2 cardn ">
+            <div class="card mb-2">
+              <div class="card-body">
+                <h2 class="text-center">XYZ</h2>
+                <ul class="list" style="width: 50%; margin-left: 26rem;">
+                  <li class="list">Contact no: 9392940293</li>
+                  <li class="list">Address: Delhi</li>
+                  <li class="list">Website: <a href="#" class="link-primary">www.xyzdonate.com</a></li>
+                </ul>
+                <center><button type="button" class="btn btn-primary">Donate</button></center>
+              </div>
+            </div>
+            <div class="card mb-2">
+              <div class="card-body">
+                <h2 class="text-center">XYZ</h2>
+                <ul class="list" style="width: 50%; margin-left: 26rem;">
+                  <li class="list">Contact no: 9392940293</li>
+                  <li class="list">Address: Delhi</li>
+                  <li class="list">Website: <a href="#" class="link-primary">www.xyzdonate.com</a></li>
+                </ul>
+                <center><button type="button" class="btn btn-primary">Donate</button></center>
+              </div>
+            </div>
+            <div class="card mb-2">
+              <div class="card-body">
+                <h2 class="text-center">XYZ</h2>
+                <ul class="list" style="width: 50%; margin-left: 26rem;">
+                  <li class="list">Contact no: 9392940293</li>
+                  <li class="list">Address: Delhi</li>
+                  <li class="list">Website: <a href="#" class="link-primary">www.xyzdonate.com</a></li>
+                </ul>
+                <center><button type="button" class="btn btn-primary">Donate</button></center>
+              </div>
+            </div>
+            <div class="card mb-2">
+              <div class="card-body">
+                <h2 class="text-center">XYZ</h2>
+                <ul class="list" style="width: 50%; margin-left: 26rem;">
+                  <li class="list">Contact no: 9392940293</li>
+                  <li class="list">Address: Delhi</li>
+                  <li class="list">Website: <a href="#" class="link-primary">www.xyzdonate.com</a></li>
+                </ul>
+                <center><button type="button" class="btn btn-primary">Donate</button></center>
+              </div>
+            </div>
                 <tbody>
                   
                     <form method="POST" action="Item_sel">
