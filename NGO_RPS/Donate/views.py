@@ -69,7 +69,7 @@ def afterlogin(request):
 	else:
 		return render(request,'Donate/ngolist.html',context={'ngos':ngos})
 
-@login_required(login_url='ngo_login')
+@login_required(login_url='donor_login')
 def ngolist(request):
 	ngos=models.Ngoextra.objects.all()
 	return render(request,'Donate/ngolist.html',context={'ngos':ngos})
