@@ -22,20 +22,17 @@ class Donorextra(models.Model):
     def __str__(self):
         return self.user.username
 
-    # def __str__(self):
-    #     return self.user
-
         
-# class Itemsdonated(models.Model):
-#     user=models.OneToOneField(User,on_delete=models.CASCADE)
-#     ngoname=models.CharField(max_length=10)
-#     type=models.CharField(max_length=10)
-#     description=models.CharField(max_length=400)
-#     quantity=models.IntegerField(max_length=10)
-#     pickup=models.CharField(max_length=200)
+class Itemsdonated(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    ngoname=models.CharField(max_length=10)
+    type=models.CharField(max_length=10)
+    description=models.CharField(max_length=400)
+    quantity=models.IntegerField()
+    pickup=models.CharField(max_length=200)
 
-    # def __str__(self):
-    #     return self.type
+    def __str__(self):
+        return self.type
 
 
 # class Ngoextra(models.Model):

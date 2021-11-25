@@ -42,7 +42,8 @@
                 </thead>
                 <tbody>
                   
-                    <form>
+                    <form method="POST" action="Item_sel">
+                    {% csrf_token %}
                     {% for i in ngos %}
                     <tr>
                     <th scope="row">{{ forloop.counter }}</th>
@@ -50,7 +51,7 @@
                     <td>{{ i.place }}</td>
                     <td>{{ i.mobno }}</td>
                     <td>{{ i.website }}</td>
-                    <td><button type="button" class="btn btn-primary" ><a href="Item_sel" style="color: white">Donate</a></button></td>
+                    <td><input type="submit" class="btn btn-primary" value="{{ i.user }}" name="NGO_name" ><a style="color: white">Donate</a></input></td>
                     </tr>
                     {% endfor %}
                   </form>

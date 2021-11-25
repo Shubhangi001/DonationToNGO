@@ -102,7 +102,9 @@ def NGOprofile(request):
 
 @login_required(login_url='donor_login')
 def Item_sel(request):
-	return render(request,"Donate/Item_sel.html")
+	if(request.method == "POST"):
+		name_of_ngo = request.POST.get('NGO_name')
+	return render(request,"Donate/Item_sel.html", context={'name_of_ngo':name_of_ngo})
 
 
 
