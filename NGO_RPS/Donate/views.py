@@ -102,12 +102,17 @@ def NGOprofile(request):
 
 @login_required(login_url='donor_login')
 def Item_sel(request):
+	form=DonationInfoForm()
 	if(request.method == "POST"):
 		name_of_ngo = request.POST.get('NGO_name')
-	print(name_of_ngo)
-	form=DonationInfoForm()
-	if form.is_valid():
-		pass
+	# print(name_of_ngo)
+		if(request.method == "POST"):
+			if form.is_valid():
+				f2=form.save(commit=False)
+				f2.user=request.user
+				f2.ngoname=name_of_ngo
+				f2.save()
+			# return HttpResponseRedirect('donorprofile')
 	mydict={'name_of_ngo':name_of_ngo,'form':form}
 	# print(name_of_ngo)
 	return render(request,"Donate/Item_sel.html",context=mydict)
