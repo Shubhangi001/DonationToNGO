@@ -95,8 +95,8 @@ def donorprofile(request):
 
 @login_required(login_url='ngo_login')
 @user_passes_test(is_ngo)
-def ngo_afterlogin(request):
-    return render(request, "Donate/ngo_afterlogin.html")
+def NGOprofile(request):
+    return render(request, "Donate/NGOprofile.html")
 
 @login_required(login_url='donor_login')
 def Item_sel(request):

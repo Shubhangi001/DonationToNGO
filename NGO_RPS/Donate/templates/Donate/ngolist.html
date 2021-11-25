@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -23,9 +23,11 @@
     
 
     <body>
+<div class="container-fluid" style="margin-top:50px ;">
+{% include 'Donate/navbar.html' %}    </div>
         <div class="container-fluid img">    
-        <nav>        {% include 'Donate/navbar.html' %} </nav>
-        <h1 class="pt-5 pb-2 text-center ">NGO List</h1>
+        
+        <h1 class="pt-5 pb-2 text-center ">List of NGOs available</h1>
     <form action="Item_sel">
         <div class="container-fluid  ">
             <div class="card p-2 " style="width: 90rem;min-height:20rem;margin-left: auto;margin-right: auto;">
@@ -41,38 +43,20 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>6356436632</td>
-                    <td>@mdo</td>
-                    <td><button type="button" class="btn btn-primary">Select</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>8626893268</td>
-                    <td>@mdo</td>
-                    <td><button type="button" class="btn btn-primary">Select</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td >Larry the Bird</td>
-                    <td>d</td>
-                    <td>8927020237</td>
-                    <td>@mdo</td>
-                    <td><button type="button" class="btn btn-primary">Select</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td >xyz</td>
-                    <td>th</td>
-                    <td>8392940321</td>
-                    <td>@mdo</td>
-                    <td><button type="button" class="btn btn-primary">Select</button></td>
-                  </tr>
+                  
+                    <form>
+                    {% for i in ngos %}
+                    <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td> {{ i.user }}</td>
+                    <td>{{ i.place }}</td>
+                    <td>{{ i.mobno }}</td>
+                    <td>{{ i.website }}</td>
+                    <td><button type="button" class="btn btn-primary" ><a href="Item_sel" style="color: white">Donate</a></button></td>
+                    </tr>
+                    {% endfor %}
+                  </form>
+                  
                 </tbody>
               </table>
               </div>
@@ -82,16 +66,7 @@
         <br>
         <br>
         <br>
-        {% for i in ngos %}
-    
-        {{ i.user }}<br>
-        {{ i.mobno }}<br>
-        {{ i.place }}<br>
-        {{ i.website }}<br>
-        {{ i.mail_id }}<br>
-        {% endfor %}
-        <button type="submit" >Donate</button>
-    </form>
+      
     <footer>
         {% include 'Donate/Footer.html' %}
     </footer>

@@ -8,6 +8,7 @@ urlpatterns = [
         path('home', views.home,name='home'),
         path('accounts/',include('django.contrib.auth.urls') ),
         path('donorprofile', views.donorprofile,name='donorprofile'),
+        path('NGOprofile', views.NGOprofile,name='NGOprofile'),
         # path('ngolist', views.ngolist,name='ngolist'),
         path('donor_signup', views.donor_signup,name='donor_signup'),
         path('Item_sel', views.Item_sel,name='Item_sel'),
@@ -18,6 +19,6 @@ urlpatterns = [
         path('donor_login', LoginView.as_view(template_name='Donate/donor_login.html')),
         path('afterlogin', views.afterlogin),
         path('ngo_login', LoginView.as_view(template_name='Donate/ngo_login.html')),
-        path('ngo_afterlogin', views.ngo_afterlogin,name='ngo_afterlogin'),
+        # path('ngo_afterlogin', views.ngo_afterlogin,name='ngo_afterlogin'),
 
 ]
