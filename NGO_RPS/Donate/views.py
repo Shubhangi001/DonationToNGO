@@ -91,7 +91,7 @@ def ngolist(request):
 def donorprofile(request):
 	# name=request.user.username
 	# name=request.session['username']
-	usr = models.Ngoextra.objects.get(user_id=request.user.id)
+	usr = models.Donorextra.objects.get(user_id=request.user.id)
 	return render(request, "Donate/donorprofile.html",context={'usr':usr})
 
 @login_required(login_url='ngo_login')
@@ -102,8 +102,9 @@ def NGOprofile(request):
 
 @login_required(login_url='donor_login')
 def Item_sel(request):
-	# if(request.method == "POST"):
-	name_of_ngo = request.GET['NGO_name']
+	if(request.method == "POST"):
+		name_of_ngo = request.POST.get('NGO_name')
+	print(name_of_ngo)
 	form=DonationInfoForm()
 	if form.is_valid():
 		pass
