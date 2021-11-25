@@ -27,7 +27,7 @@
                       <div class="d-flex flex-column align-items-center text-center">
                         <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
-                          <h4>XYZ</h4>
+                          <h4>{{ ngo.user.first_name }} {{ ngo.user.last_name }}</h4>
                 
                         </div>
                       </div>
@@ -43,7 +43,7 @@
                           <h6 class="mb-0">NGO Name</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          XYZ
+                          {{ ngo.user }}
                         </div>
                       </div>
                       <hr>
@@ -52,7 +52,7 @@
                           <h6 class="mb-0">Email</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          XYZ@gmail.com
+                          {{ ngo.mail_id }}
                         </div>
                       </div>
                       <hr>
@@ -61,7 +61,7 @@
                           <h6 class="mb-0">Contact no.</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          7820347887
+                          {{ ngo.mobno }}
                         </div>
                       </div>
                       <hr>
@@ -70,7 +70,7 @@
                           <h6 class="mb-0">Website</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          www.XYZngo.com
+                          {{ ngo.website }}
                         </div>
                       </div>
                       <hr>
@@ -79,7 +79,7 @@
                           <h6 class="mb-0">Address</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          Chennai, Tamil Nadu, India
+                          {{ ngo.place }}
                         </div>
                       </div>
                       <hr>

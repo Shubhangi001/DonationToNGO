@@ -51,8 +51,6 @@ def donor_signup(request):
 		form2 = DonorExtraForm(request.POST)
 		if form1.is_valid() and form2.is_valid():
 			user = form1.save()
-			global donorname
-			donorname=user
 			user.set_password(user.password)
 			user.save()
 			f2=form2.save(commit=False)
@@ -65,11 +63,10 @@ def donor_signup(request):
 
 
 def afterlogin(request):
-	ngos=models.Ngoextra.objects.all()
 	if is_ngo(request.user):
-		return render(request,'Donate/NGOprofile.html')
+		return HttpResponseRedirect('NGOprofile')		
 	else:
-		return render(request,'Donate/ngolist.html',context={'ngos':ngos})
+		return HttpResponseRedirect('ngolist')
 
 @login_required(login_url='donor_login')
 def ngolist(request):
@@ -92,20 +89,16 @@ def ngolist(request):
 
 @login_required(login_url='donor_login')
 def donorprofile(request):
-	name=request.user.username
+	# name=request.user.username
 	# name=request.session['username']
-	usr = models.Donorextra.objects.get(user_id=request.user.id)
-	# for i in usr:
-	# a=usr.mobno
-	
-	# student=models.StudentExtra.objects.filter(user_id=request.user.id)
-
+	usr = models.Ngoextra.objects.get(user_id=request.user.id)
 	return render(request, "Donate/donorprofile.html",context={'usr':usr})
 
 @login_required(login_url='ngo_login')
 @user_passes_test(is_ngo)
 def NGOprofile(request):
-    return render(request, "Donate/NGOprofile.html")
+	ngo = models.Ngoextra.objects.get(user_id=request.user.id)
+	return render(request, "Donate/NGOprofile.html",context={'ngo':ngo})
 
 @login_required(login_url='donor_login')
 def Item_sel(request):
