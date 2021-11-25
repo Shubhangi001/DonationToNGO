@@ -51,7 +51,8 @@
                     <td>{{ i.place }}</td>
                     <td>{{ i.mobno }}</td>
                     <td>{{ i.website }}</td>
-                    <td><input type="submit" class="btn btn-primary" value="{{ i.user }}" name="NGO_name" ><a style="color: white">Donate</a></input></td>
+                    <td><button name="NGO_name" value="{{ i.user }}"class="btn btn-primary" type="submit" name="action">Donate</button></td>
+                    {% comment %} <td><input type="submit" class="btn btn-primary" value="{{ i.user }}" name="NGO_name" id="NGO_name" >Donate</input></td> {% endcomment %}
                     </tr>
                     {% endfor %}
                   </form>

@@ -24,9 +24,15 @@ class Donorextra(models.Model):
 
         
 class Itemsdonated(models.Model):
+    types=(
+		('books',"Books"),
+		('medicines',"Medicines"),
+		('clothes',"Clothes"),
+		('food',"Food"),
+	)
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     ngoname=models.CharField(max_length=10)
-    type=models.CharField(max_length=10)
+    type=models.CharField(max_length=10,choices=types)
     description=models.CharField(max_length=400)
     quantity=models.IntegerField()
     pickup=models.CharField(max_length=200)

@@ -5,7 +5,7 @@ from . import models, forms
 # from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import auth
 from django.contrib.auth.models import Group,User
-from .forms import NewDonorForm, NewNGOForm, NGOExtraForm, DonorExtraForm
+from .forms import DonationInfoForm, NewDonorForm, NewNGOForm, NGOExtraForm, DonorExtraForm, DonationInfoForm
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required,user_passes_test
@@ -102,9 +102,14 @@ def NGOprofile(request):
 
 @login_required(login_url='donor_login')
 def Item_sel(request):
-	if(request.method == "POST"):
-		name_of_ngo = request.POST.get('NGO_name')
-	return render(request,"Donate/Item_sel.html", context={'name_of_ngo':name_of_ngo})
+	# if(request.method == "POST"):
+	name_of_ngo = request.GET['NGO_name']
+	form=DonationInfoForm()
+	if form.is_valid():
+		pass
+	mydict={'name_of_ngo':name_of_ngo,'form':form}
+	# print(name_of_ngo)
+	return render(request,"Donate/Item_sel.html",context=mydict)
 
 
 

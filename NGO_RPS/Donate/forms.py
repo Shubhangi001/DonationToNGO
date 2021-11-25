@@ -20,15 +20,19 @@ class NewDonorForm(forms.ModelForm):
 		model = User
 		fields=['first_name','last_name','username','password']
 
-class DonorExtraForm(forms.ModelForm):
+class DonorExtraForm(forms.ModelForm): 
 	class Meta:
 		model = models.Donorextra
 		fields=['mobno', 'telephone', 'address', 'mail_id']
 
 class DonationInfoForm(forms.ModelForm):
+	
 	class Meta:
 		model = models.Itemsdonated
 		fields=['ngoname', 'type', 'description', 'quantity','pickup']
+		widgets = {
+            'description': forms.Textarea(),
+        }
 
 
 	# def save(self, commit=True):
