@@ -10,7 +10,7 @@ class Ngoextra(models.Model):
     mail_id = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 class Donorextra(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
@@ -20,7 +20,23 @@ class Donorextra(models.Model):
     mail_id = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.user
+        return self.user.username
+
+    # def __str__(self):
+    #     return self.user
+
+        
+# class Itemsdonated(models.Model):
+#     user=models.OneToOneField(User,on_delete=models.CASCADE)
+#     ngoname=models.CharField(max_length=10)
+#     type=models.CharField(max_length=10)
+#     description=models.CharField(max_length=400)
+#     quantity=models.IntegerField(max_length=10)
+#     pickup=models.CharField(max_length=200)
+
+    # def __str__(self):
+    #     return self.type
+
 
 # class Ngoextra(models.Model):
 #     user=models.OneToOneField(User,on_delete=models.CASCADE)

@@ -25,6 +25,12 @@ class DonorExtraForm(forms.ModelForm):
 		model = models.Donorextra
 		fields=['mobno', 'telephone', 'address', 'mail_id']
 
+# class DonationInfoForm(forms.ModelForm):
+# 	class Meta:
+# 		model = models.Itemsdonated
+# 		fields=['ngoname', 'type', 'description', 'quantity','pickup']
+
+
 	# def save(self, commit=True):
 	# 	user = super(NewDonorForm, self).save(commit=False)
 	# 	user.email = self.cleaned_data['email']
