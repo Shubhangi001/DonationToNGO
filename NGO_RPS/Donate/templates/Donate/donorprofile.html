@@ -101,7 +101,7 @@
                 <div class="card" style="width: 100%;">
                   <div class="card-body">
                     <h5 class="card-title text-center">No. of Donations</h5>
-                    <h1 class="text-center">0</h1>
+                    <h1 class="text-center">{{ n }}</h1>
                   </div>
                 </div>
                </div>
@@ -119,35 +119,22 @@
                 </tr>
               </thead>
               <tbody>
+              {% for i in items %}
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Book</td>
-                  <td>xyz</td>
-                  <td>1</td>
-                  <td>a</td>
-                  <td>Confirmed for pickup</td>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td> {{ i.type }}</td>
+                  <td>{{ i.description }}</td>
+                  <td>{{ i.quantity }}</td>
+                  <td>{{ i.ngoname }}</td>
+                  <td>{{ i.status }}</td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>food</td>
-                  <td>Vegetables</td>
-                  <td>5</td>
-                  <td>b</td>
-                  <td>Picked up</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td >Medicine</td>
-                  <td>crocine</td>
-                  <td>4</td>
-                  <td>c</td>
-                  <td>Delivered</td>
-                </tr>
+                {% endfor %}
                 
               </tbody>
             </table>
             </div>
-           
+
+            
         </div>
         <div>    {% include 'Donate/Footer.html' %}
         </div>

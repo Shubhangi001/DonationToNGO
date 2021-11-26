@@ -5,7 +5,7 @@ from . import models, forms
 # from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import auth
 from django.contrib.auth.models import Group,User
-from .forms import DonationInfoForm, NewDonorForm, NewNGOForm, NGOExtraForm, DonorExtraForm, DonationInfoForm
+from .forms import DonationInfoForm, NewDonorForm, NewNGOForm, NGOExtraForm, DonorExtraForm
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required,user_passes_test
@@ -91,31 +91,41 @@ def ngolist(request):
 def donorprofile(request):
 	# name=request.user.username
 	# name=request.session['username']
+	items=models.Itemsdonated.objects.filter(user_id=request.user.id)
+	n=len(items)
 	usr = models.Donorextra.objects.get(user_id=request.user.id)
-	return render(request, "Donate/donorprofile.html",context={'usr':usr})
+	mydict={'items':items,'usr':usr,'n':n}
+	return render(request, "Donate/donorprofile.html",mydict)
 
 @login_required(login_url='ngo_login')
 @user_passes_test(is_ngo)
 def NGOprofile(request):
+	items=models.Itemsdonated.objects.filter(user=request.user)
 	ngo = models.Ngoextra.objects.get(user_id=request.user.id)
-	return render(request, "Donate/NGOprofile.html",context={'ngo':ngo})
+	mydict={'ngo':ngo,'items':items}
+	return render(request, "Donate/NGOprofile.html",context=mydict)
 
 @login_required(login_url='donor_login')
 def Item_sel(request):
 	form=DonationInfoForm()
 	if(request.method == "POST"):
+		global name_of_ngo
 		name_of_ngo = request.POST.get('NGO_name')
-	# print(name_of_ngo)
-		if(request.method == "POST"):
-			if form.is_valid():
-				f2=form.save(commit=False)
-				f2.user=request.user
-				f2.ngoname=name_of_ngo
-				f2.save()
-			# return HttpResponseRedirect('donorprofile')
 	mydict={'name_of_ngo':name_of_ngo,'form':form}
 	# print(name_of_ngo)
 	return render(request,"Donate/Item_sel.html",context=mydict)
+
+def doninfoform(request):
+	if(request.method=="POST"):
+		form = DonationInfoForm(request.POST)
+		if form.is_valid():
+			f2=form.save(commit=False)
+			f2.ngoname = models.Ngoextra.objects.get(user=name_of_ngo)
+			f2.user=request.user
+			f2.save()
+			return HttpResponseRedirect('donorprofile')
+	return HttpResponseRedirect('Item_sel')
+		
 
 
 

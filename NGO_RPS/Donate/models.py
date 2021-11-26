@@ -30,15 +30,23 @@ class Itemsdonated(models.Model):
 		('clothes',"Clothes"),
 		('food',"Food"),
 	)
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
-    ngoname=models.CharField(max_length=10)
+    stats=(
+        ('pickup confirmed','Pickup confirmed'),
+        ('picked up','Picked up'),
+        ('delivered','Delivered'),
+        ('NA','NA'),
+
+    )
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    ngoname=models.ForeignKey(Ngoextra,on_delete=models.CASCADE,null=True)
+    # ngoname=models.CharField(max_length=10,blank=True)
     type=models.CharField(max_length=10,choices=types)
     description=models.CharField(max_length=400)
     quantity=models.IntegerField()
     pickup=models.CharField(max_length=200)
+    status=models.CharField(max_length=20,choices=stats,default='NA')
 
-    def __str__(self):
-        return self.type
+    # def __str__(self/
 
 
 # class Ngoextra(models.Model):

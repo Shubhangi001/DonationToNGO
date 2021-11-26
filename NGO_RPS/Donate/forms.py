@@ -29,7 +29,7 @@ class DonationInfoForm(forms.ModelForm):
 	
 	class Meta:
 		model = models.Itemsdonated
-		fields=['ngoname', 'type', 'description', 'quantity','pickup']
+		fields=['type', 'description', 'quantity','pickup']
 		widgets = {
             'description': forms.Textarea(attrs={'cols': 60, 'rows': 5}),
         }

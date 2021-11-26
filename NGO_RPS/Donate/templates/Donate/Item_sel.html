@@ -33,9 +33,9 @@
     <div class="container-fluid backimg" >
        <h1 style="margin-left: 250px;">Item Selection</h1>
        <div class="row">
-       <form method="POST">
-        {% csrf_token %}
         {% comment %} <div style="width: 100%; margin-left: 250px;" > {{ form.type }} </div> {% endcomment %}
+       {% comment %} <form method="POST" action="doninfoform">
+        {% csrf_token %}
          <select name="form.type.html_name" value="{{ form.type.value }}" id="{{ form.type.id_for_label }}" class="form-select" aria-label="Default select example" style="width: 80%; margin-left: 250px;" >
             {% for widget in form.type.subwidgets %}
             {{ widget }}
@@ -64,7 +64,22 @@
               </div>
         
             </div>
-            </form>
+            </form> {% endcomment %}
+            <form method="POST" action="doninfoform">
+            {% csrf_token %}
+            {% for field in form %}
+                  {% comment %} {% if field.label_tag!= "ngoname" %} {% endcomment %}
+
+                    <div class="mb-3 formsize">
+                      <label class="form-label" >{{ field.label_tag }}</label>
+                       {{ field }} 
+                     
+                    </div>
+                    {% endfor %}
+                  <button class="btn btn-primary" type="submit">Register</button>
+                  </form>
+
+
     </div>
     </div>
     <footer>
