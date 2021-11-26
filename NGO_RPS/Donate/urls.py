@@ -9,6 +9,7 @@ urlpatterns = [
         path('accounts/',include('django.contrib.auth.urls') ),
         path('donorprofile', views.donorprofile,name='donorprofile'),
         path('thankyou', views.thankyou,name='thankyou'),
+        path('statusmodif', views.statusmodif,name='statusmodif'),
         path('NGOprofile', views.NGOprofile,name='NGOprofile'),
         path('doninfoform', views.doninfoform,name='doninfoform'),
         # path('ngolist', views.ngolist,name='ngolist'),

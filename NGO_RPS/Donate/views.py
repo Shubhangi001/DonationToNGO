@@ -97,21 +97,31 @@ def donorprofile(request):
 	mydict={'items':items,'usr':usr,'n':n}
 	return render(request, "Donate/donorprofile.html",mydict)
 
+
 @login_required(login_url='ngo_login')
 @user_passes_test(is_ngo)
 def NGOprofile(request):
 	item=models.Itemsdonated.objects.all()
-	print(request.user.id)
+	# print(request.user.id)
 	items=[]
-	print(request.user)
+	# print(request.user)
 	x=str(request.user.username)
 	for i in item:
 		if str(i.ngoname)==x:
 			items.append(i)
-			
 	ngo = models.Ngoextra.objects.get(user_id=request.user.id)
 	mydict={'ngo':ngo,'items':items}
 	return render(request, "Donate/NGOprofile.html",context=mydict)
+
+def statusmodif(request):
+	if(request.method =="POST"):
+		stats=request.POST.get('statuss')
+		itemid=request.POST.get('choice')
+		print(stats)
+		print(itemid)
+		models.Itemsdonated.objects.filter(id=itemid).update(status=stats)
+
+		return HttpResponseRedirect('NGOprofile')
 
 @login_required(login_url='donor_login')
 def Item_sel(request):
@@ -141,18 +151,3 @@ def doninfoform(request):
 	return HttpResponseRedirect('Item_sel')
 		
 
-
-
-
-# def adminsignup_view(request):
-#     form=forms.AdminSigupForm()
-#     if request.method=='POST':
-#         form=forms.AdminSigupForm(request.POST)
-#         if form.is_valid():
-#             user=form.save()
-#             user.set_password(user.password)
-#             user.save()
-#             my_admin_group = Group.objects.get_or_create(name='NGO')
-#             my_admin_group[0].user_set.add(user)
-#             return HttpResponseRedirect('adminlogin')
-#     return render(request,'library/adminsignup.html',{'form':form})

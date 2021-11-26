@@ -110,9 +110,14 @@
                 </tr>
               </thead>
               <tbody>
+              
               {%for i in items%}
+              <form method="POST" action='statusmodif'>
+               {%csrf_token%}
                 <tr>
-                  <th scope="row">1</th>
+
+                  <th scope="row">{{forloop.counter}}</th>
+                  
                   <td>{{ i.type }}</td>
                   <td>{{ i.description }}</td>
                   <td>{{ i.quantity }}</td>
@@ -120,20 +125,25 @@
                   <td>
                     <div class="row">
                       <div class="col-7">
-                    <select class="form-select " aria-label="Default select example" >
-                    <option selected>NA</option>
-                    <option value="1" >Confirmed for pickup</option>
-                    <option value="2">Picked up</option>
-                    <option value="3">Delivered</option>
+                      
+                     
+                    <select name="statuss" class="form-select " aria-label="Default select example" >
+                    <option selected>{{ i.status }}</option>
+                    <option value="Pickup confirmed" >Pickup confirmed</option>
+                    <option value="Picked up">Picked up</option>
+                    <option value="Delivered">Delivered</option>
                     <!-- <option value="4">NA</option> -->
                   </select> 
                      </div>
                    <div class="col-5">
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button name="choice" value="{{ i.id }}" type="submit" class="btn btn-primary">Submit</button>
                    </div>
+                   
                   </div>
+
                 </td>
                 </tr>
+                </form>
                  {%endfor%}
                 
               </tbody>
