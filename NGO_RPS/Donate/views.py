@@ -104,13 +104,14 @@ def NGOprofile(request):
 	item=models.Itemsdonated.objects.all()
 	# print(request.user.id)
 	items=[]
+	mode = ["Pick up Confirmed", "Picked up", "Delivered"]
 	# print(request.user)
 	x=str(request.user.username)
 	for i in item:
 		if str(i.ngoname)==x:
 			items.append(i)
 	ngo = models.Ngoextra.objects.get(user_id=request.user.id)
-	mydict={'ngo':ngo,'items':items}
+	mydict={'ngo':ngo,'items':items, 'mode': mode}
 	return render(request, "Donate/NGOprofile.html",context=mydict)
 
 def statusmodif(request):

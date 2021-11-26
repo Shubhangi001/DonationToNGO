@@ -129,9 +129,11 @@
                      
                     <select name="statuss" class="form-select " aria-label="Default select example" >
                     <option selected>{{ i.status }}</option>
-                    <option value="Pickup confirmed" >Pickup confirmed</option>
-                    <option value="Picked up">Picked up</option>
-                    <option value="Delivered">Delivered</option>
+                    {% for j in mode %}
+                    {% ifnotequal j i.status %}
+                    <option value="{{j}}" >{{j}}</option>
+                    {% endifnotequal %}
+                    {% endfor %}
                     <!-- <option value="4">NA</option> -->
                   </select> 
                      </div>
