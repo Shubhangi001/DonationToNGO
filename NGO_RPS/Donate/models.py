@@ -45,6 +45,8 @@ class Itemsdonated(models.Model):
     quantity=models.IntegerField()
     pickup=models.CharField(max_length=200)
     status=models.CharField(max_length=20,choices=stats,default='NA')
+    # def __str__(self):
+    #     return self.ngoname.user
 
     # def __str__(self/
 

@@ -100,7 +100,15 @@ def donorprofile(request):
 @login_required(login_url='ngo_login')
 @user_passes_test(is_ngo)
 def NGOprofile(request):
-	items=models.Itemsdonated.objects.filter(user=request.user)
+	item=models.Itemsdonated.objects.all()
+	print(request.user.id)
+	items=[]
+	print(request.user)
+	x=str(request.user.username)
+	for i in item:
+		if str(i.ngoname)==x:
+			items.append(i)
+			
 	ngo = models.Ngoextra.objects.get(user_id=request.user.id)
 	mydict={'ngo':ngo,'items':items}
 	return render(request, "Donate/NGOprofile.html",context=mydict)
@@ -115,6 +123,11 @@ def Item_sel(request):
 	# print(name_of_ngo)
 	return render(request,"Donate/Item_sel.html",context=mydict)
 
+def thankyou(request):
+	usr=request.user
+	return render(request,"Donate/Thankyou.html",{'usr':usr})
+
+
 def doninfoform(request):
 	if(request.method=="POST"):
 		form = DonationInfoForm(request.POST)
@@ -123,7 +136,8 @@ def doninfoform(request):
 			f2.ngoname = models.Ngoextra.objects.get(user=name_of_ngo)
 			f2.user=request.user
 			f2.save()
-			return HttpResponseRedirect('donorprofile')
+			
+			return HttpResponseRedirect('thankyou')
 	return HttpResponseRedirect('Item_sel')
 		
 

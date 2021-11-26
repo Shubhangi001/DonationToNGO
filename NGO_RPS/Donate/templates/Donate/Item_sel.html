@@ -31,7 +31,7 @@
         <!-- <div w3-include-html="navbar.html"></div> -->
     </div>
     <div class="container-fluid backimg" >
-       <h1 style="margin-left: 250px;">Item Selection</h1>
+      <center> <h1>Item Selection</h1></center>
        <div class="row">
         {% comment %} <div style="width: 100%; margin-left: 250px;" > {{ form.type }} </div> {% endcomment %}
        {% comment %} <form method="POST" action="doninfoform">
@@ -65,6 +65,7 @@
         
             </div>
             </form> {% endcomment %}
+             <div class="card center" style="width: 600px; margin-left: 500px;margin-top: 50px; margin-bottom: 50px; ">
             <form method="POST" action="doninfoform">
             {% csrf_token %}
             {% for field in form %}
@@ -76,8 +77,9 @@
                      
                     </div>
                     {% endfor %}
-                  <button class="btn btn-primary" type="submit">Register</button>
+                  <button class="btn btn-primary" type="submit">Submit</button>
                   </form>
+                 </div>
 
 
     </div>

@@ -26,13 +26,18 @@
         </div>
     <div class="container-fluid "style="margin-top: 300px; margin-left: 600px; width: 28rem; height: 18rem; opacity: 0.9;">
         <div class="row">
-           <h1 class="text-center" style="font-size:60px;">THANK YOU</h1>
-           <h1 class="text-center">FOR YOUR DONATION</h1> 
+           <h1 class="text-center" style="font-size:50px;">Thank you  </h1>
+           <h1 class="text-center">{{ usr }}  </h1>
+           <h1 class="text-center">for your donation! &#128512</h1> 
            <div class="col-6" style="margin-top: 30px;">
-            <button type="button" class="btn btn-warning" style="margin-left: 30px;">Donate again</button>
+            <form action='ngolist'>
+            <button type="submit" class="btn btn-warning" style="margin-left: 30px;">Donate again</button>
+          </form>
            </div>
            <div class="col-6"style="margin-top: 30px;">
-            <button type="button" class="btn btn-warning" style="margin-left: 10px;">Check your profile</button>
+            <form action="donorprofile">
+            <button type="submit" class="btn btn-warning" style="margin-left: 10px;">Check your profile</button>
+          </form>
            </div>
        </div>
     </div>
