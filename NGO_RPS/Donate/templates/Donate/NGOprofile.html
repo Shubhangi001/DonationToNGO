@@ -97,6 +97,14 @@
               </div>
             
             <h1>Donation List</h1>
+            <div id="myGroup">
+              <p>
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"  >Inprogress Donations</a>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" >Completed Donations</button>
+              </p>
+              <div class="row">
+                <div class="accordion-group">
+                  <div class="collapse " id="multiCollapseExample1" data-bs-parent="#myGroup">
             <table class="table">
               <thead>
               
@@ -150,6 +158,52 @@
                 
               </tbody>
             </table>
+          </div>
+          <div class="collapse " id="multiCollapseExample2" data-bs-parent="#myGroup">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Item Type</th>
+                  <th scope="col">Item Description</th>
+                  <th scope="col">Item Quantity </th>
+                  <th scope="col">Donor name</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Book</td>
+                  <td>xyz</td>
+                  <td>1</td>
+                  <td>a</td>
+                  <td>Delivered</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>food</td>
+                  <td>Vegetables</td>
+                  <td>5</td>
+                  <td>b</td>
+                  <td>Delivered</td>
+                </tr>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td >Medicine</td>
+                  <td>crocine</td>
+                  <td>4</td>
+                  <td>c</td>
+                  <td>Delivered</td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+      </div>
             </div>
            
         </div>
