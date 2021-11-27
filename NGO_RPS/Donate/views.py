@@ -117,8 +117,6 @@ def statusmodif(request):
 	if(request.method =="POST"):
 		stats=request.POST.get('statuss')
 		itemid=request.POST.get('choice')
-		print(stats)
-		print(itemid)
 		models.Itemsdonated.objects.filter(id=itemid).update(status=stats)
 
 		return HttpResponseRedirect('NGOprofile')
