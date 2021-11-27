@@ -104,7 +104,7 @@ def NGOprofile(request):
 	item=models.Itemsdonated.objects.all()
 	# print(request.user.id)
 	items=[]
-	mode = ["Pick up Confirmed", "Picked up", "Delivered"]
+	mode = ["Pick up Confirmed", "Picked up", "Delivered","NA"]
 	# print(request.user)
 	x=str(request.user.username)
 	for i in item:
